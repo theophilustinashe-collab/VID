@@ -1,0 +1,406 @@
+VID MASTER ZIMBABWE – COMPLETE ENTERPRISE APPLICATION DEVELOPMENT PROMPT
+Project Vision
+
+Build VID Master Zimbabwe, a world-class, enterprise-grade, cross-platform digital driver education ecosystem designed to become Zimbabwe's leading learner's licence preparation, driver education, driving school management, and road safety platform.
+
+The platform must help learners pass Zimbabwe Vehicle Inspection Department (VID) examinations through realistic simulations, interactive learning, comprehensive study materials, performance tracking, and driving school integration while maintaining the highest standards of security, scalability, accessibility, responsiveness, and legal compliance.
+
+The application should feel comparable in quality to the world's leading educational technology platforms.
+
+Core Objectives
+Increase learner pass rates.
+Improve road safety education.
+Modernize driver education in Zimbabwe.
+Provide realistic VID examination preparation.
+Serve learners, instructors, and driving schools.
+Operate both online and offline.
+Support future expansion into additional licence classes and government services.
+Become Zimbabwe's national digital driver education ecosystem.
+Main Learning Features
+VID Practice Tests
+Thousands of VID-style questions.
+Topic-based learning.
+Difficulty levels.
+Randomized question generation.
+Timed mode.
+Untimed mode.
+Instant marking.
+Detailed explanations.
+Adaptive learning engine.
+Retry incorrect questions.
+Mock Examination System
+Realistic VID examination simulation.
+Countdown timer.
+Automatic scoring.
+Detailed reports.
+Pass/fail predictions.
+Exam readiness assessment.
+Unlimited generated mock exams.
+Road Signs Learning Centre
+Complete road sign encyclopedia.
+Warning signs.
+Regulatory signs.
+Informative signs.
+Direction signs.
+Zoomable illustrations.
+Search functionality.
+Flashcards.
+Quizzes.
+Offline access.
+Traffic Rules & Highway Code
+
+Comprehensive learning modules covering:
+
+Traffic circles.
+Right of way.
+Traffic lights.
+Road markings.
+Parking regulations.
+Speed limits.
+Overtaking.
+Hazard perception.
+Emergency vehicles.
+Pedestrian crossings.
+Defensive driving.
+General Highway Code.
+Interactive Learning Simulations
+Traffic Circle Simulator
+Entering.
+Exiting.
+Lane positioning.
+Proper signalling.
+Real-life scenarios.
+Right-of-Way Simulator
+Multi-vehicle situations.
+Interactive intersections.
+Animated explanations.
+Interactive Junction Simulator
+Four-way stops.
+Uncontrolled intersections.
+Traffic light intersections.
+Animated traffic flow.
+Smart Revision System
+Wrong Answer Notebook
+Automatically stores mistakes.
+Personalized revision lists.
+Tracks recurring weaknesses.
+Bookmarked Questions
+Save difficult questions.
+Organize study collections.
+Topic-Based Revision
+Road Signs.
+Traffic Lights.
+Road Markings.
+Traffic Circles.
+Right of Way.
+Parking Rules.
+Vehicle Controls.
+Speed Limits.
+Highway Code.
+Progress Tracking & Analytics
+Dashboard
+Accuracy percentage.
+Study time.
+Questions answered.
+Daily activity.
+Weekly activity.
+Monthly activity.
+Exam Readiness Meter
+Pass probability.
+Confidence score.
+Topic mastery.
+Weakness detection.
+Advanced Analytics
+Heat maps.
+Learning trends.
+Performance reports.
+Response speed analysis.
+Study Planner
+Daily goals.
+Weekly goals.
+Monthly goals.
+Study schedules.
+Smart reminders.
+Study streaks.
+Exam countdown.
+Gamification
+Levels
+Beginner Driver.
+Road User.
+Safe Driver.
+Highway Expert.
+VID Master.
+Rewards
+XP points.
+Achievement badges.
+Milestones.
+Ranking progression.
+Leaderboards
+Daily.
+Weekly.
+Monthly.
+National.
+Driving school rankings.
+Community Features
+Study Groups
+Create groups.
+Join groups.
+Share progress.
+Friendly competition.
+Discussion System
+Learner discussions.
+Instructor participation.
+Moderated environment.
+Driving School Ecosystem
+Driving School Directory
+Search by city.
+Search by province.
+Reviews.
+Ratings.
+Contact details.
+GPS directions.
+Instructor Portal
+Student management.
+Student analytics.
+Homework assignment.
+Test assignment.
+Performance tracking.
+Reports.
+Driving School Dashboard
+Pass-rate tracking.
+Student management.
+School analytics.
+Institution reporting.
+Vehicle Knowledge Centre
+Dashboard warning lights.
+Vehicle controls.
+Tyre safety.
+Brake safety.
+Night driving.
+Fuel-efficient driving.
+Vehicle maintenance.
+Pre-trip inspections.
+Emergency & First Aid Centre
+Accident scene management.
+First aid.
+Emergency procedures.
+Breakdown procedures.
+Emergency contacts.
+Road safety awareness.
+Learner Licence Wallet
+
+Secure digital storage for:
+
+Learner licences.
+Certificates.
+Examination results.
+Study achievements.
+Important documents.
+User Account System
+Guest mode.
+Email login.
+Google login.
+Apple login.
+Secure authentication.
+Cloud synchronization.
+Multi-device support.
+Premium Features
+Unlimited exams.
+Advanced analytics.
+Ad-free experience.
+Premium study plans.
+Exclusive content.
+Detailed readiness reports.
+Admin System
+
+Administrators must manage:
+
+Users.
+Questions.
+Road signs.
+Driving schools.
+Instructors.
+Reports.
+Analytics.
+Notifications.
+Moderation.
+Enterprise Security Requirements
+
+The platform must follow:
+
+Security by Design.
+Privacy by Design.
+Zero Trust Architecture.
+Defense in Depth.
+Secure Development Lifecycle.
+Authentication Security
+Multi-Factor Authentication (MFA).
+Two-Factor Authentication (2FA).
+Email verification.
+Passwordless login options.
+Session management.
+Brute-force protection.
+Device recognition.
+Data Protection
+AES-256 encryption at rest.
+TLS 1.3 encryption in transit.
+Encrypted backups.
+Secure key management.
+Secure cloud storage.
+Cybersecurity Protection
+
+Protect against:
+
+SQL Injection.
+Cross-Site Scripting (XSS).
+Cross-Site Request Forgery (CSRF).
+Remote Code Execution.
+Broken Authentication.
+Broken Access Control.
+API abuse.
+DDoS attacks.
+Credential stuffing.
+Malware attacks.
+
+Implement:
+
+Web Application Firewall (WAF).
+Rate limiting.
+API throttling.
+Intrusion detection.
+Security monitoring.
+Threat detection.
+Audit logging.
+Legal Compliance Requirements
+
+The platform must align with international best practices and applicable regulations.
+
+Privacy & Data Protection
+GDPR principles.
+CCPA principles.
+Privacy-by-Design.
+Cookie consent management.
+User consent management.
+Data portability.
+Right to deletion.
+Right to access data.
+Accessibility
+WCAG 2.2 AA compliance.
+Screen reader compatibility.
+Keyboard navigation.
+High contrast mode.
+Inclusive design standards.
+Security Standards
+OWASP Top 10.
+OWASP ASVS.
+ISO 27001 principles.
+NIST Cybersecurity Framework.
+Enterprise Backend Architecture
+
+The platform must include a complete backend system.
+
+Backend Features
+REST APIs.
+GraphQL support.
+Role-Based Access Control (RBAC).
+User management.
+Analytics services.
+Notification services.
+Reporting services.
+Audit logs.
+Activity tracking.
+Cloud synchronization.
+Infrastructure
+Cloud-native architecture.
+Auto-scaling.
+Load balancing.
+High availability.
+Failover systems.
+Monitoring.
+Observability.
+Backup & Disaster Recovery
+Automated backups.
+Daily backups.
+Encrypted backups.
+Geo-redundant backups.
+Disaster recovery plans.
+Recovery testing.
+Responsive Design & Device Compatibility
+
+The application must use a responsive-first architecture.
+
+Supported Devices
+Mobile
+Android.
+iPhone.
+Foldable devices.
+Tablets
+Android tablets.
+iPads.
+Desktop
+Windows.
+macOS.
+Linux.
+ChromeOS.
+Web
+Chrome.
+Safari.
+Firefox.
+Edge.
+Opera.
+Progressive Web App (PWA)
+Offline support.
+Installable.
+Native-like experience.
+Adaptive Layouts
+Mobile
+Bottom navigation.
+Touch-first design.
+Tablet
+Multi-column layouts.
+Split-screen support.
+Desktop
+Sidebar navigation.
+Advanced dashboards.
+Ultra-Wide Displays
+Enterprise workspaces.
+Multi-panel layouts.
+Performance Requirements
+Offline-first design.
+Fast loading.
+Intelligent caching.
+Lazy loading.
+Optimized images.
+Low data consumption.
+Low battery consumption.
+Excellent performance on low-end devices.
+Professional UI/UX
+Modern educational platform appearance.
+Government-grade professionalism.
+No emojis.
+Professional icon system.
+Dark Mode.
+Light Mode.
+Consistent spacing.
+Consistent typography.
+Premium animations.
+Modern dashboard experience.
+Technical Stack
+Frontend
+Flutter (preferred) or React Native.
+Backend
+Firebase, Supabase, or scalable cloud infrastructure.
+Database
+PostgreSQL or enterprise-grade cloud database.
+Cloud
+AWS, Google Cloud, Azure, or equivalent.
+Analytics
+Real-time analytics.
+Monitoring dashboards.
+Deployment
+CI/CD pipelines.
+Automated testing.
+Automated security scanning.
+Final Objective
+
+Create the most advanced, secure, scalable, legally compliant, fully responsive, enterprise-grade learner's licence preparation and driver education ecosystem in Zimbabwe, combining realistic VID examination preparation, interactive learning, driving school management, analytics, study planning, community features, offline learning, and world-class cybersecurity into a single production-ready platform capable of serving hundreds of thousands to millions of users.

@@ -1,0 +1,63 @@
+The system must simulate real learner’s licence exams with strict timing, scoring, and safety rules while also providing structured learning, revision, and assessment features. It must be secure, scalable, offline-capable, and fully backend-driven with strict data integrity and complete user isolation.
+
+When the user opens the app, a tip popup must appear after the interface fully loads. The tip system must display driving tips, safety advice, exam preparation guidance, or emergency information. It must be contextual and optionally personalized based on user progress, rotate content intelligently to avoid repetition, support offline storage of tips, and allow users to dismiss the popup either temporarily or for the session. The popup must never block navigation or app loading and must only appear once the interface is ready.
+
+The system must include a clear minimum viable product definition where the core working system must include authentication and user accounts, question system, timed tests, scoring system, progress tracking, and admin question management. All additional features must be treated as enhancements and must not block the core system from functioning.
+
+The system must include explicit non-goals where the application must not include unrelated social media features, gambling or betting systems, entertainment-only mechanics, or unrelated AI chat systems outside driving education. It must remain focused strictly on learner’s licence training.
+
+Each test must contain 25 questions and must last exactly 8 minutes. The test must auto-submit when time expires and immediately display results after submission. Questions must be randomly generated or pulled from a backend question bank and must never repeat within the same test session. Questions must cover road signs, traffic rules, driving theory, emergency situations, and situational awareness, and must follow a controlled difficulty distribution of approximately 40 percent easy, 40 percent medium, and 20 percent hard.
+
+All questions must be based on a verified and authoritative learner’s licence syllabus such as the official Zimbabwe syllabus or an equivalent recognized authority. The system must prevent any question that contradicts official road laws from being created or published. The question bank must support syllabus updates when laws change.
+
+Each question must include a correct answer, category tag, difficulty level, and explanation. The system must support both short explanations shown immediately after answering and detailed explanations available in review mode. All questions must pass through a structured lifecycle starting from draft, review, approved, published, and archived, and must include an audit trail recording creator identity, timestamps, and approval status.
+
+The system must include full insertion of diagrams and road signs from the provided document. Each sign must display its name, meaning, and usage explanation. Signs must appear inside questions where relevant and must also be available in a separate revision library for study purposes.
+
+The system must include structured learning content sections covering driving rules, learner’s licence preparation strategies, common mistakes learners make, key road safety principles, and exam success tips. It must also include a full emergency procedures module covering brake failure, tyre blowouts, vehicle fires or smoke incidents, road accidents and collision response, and roadside emergency safety steps. These scenarios must also generate related exam questions.
+
+The system must include a full user account system where each user has a fully isolated account with a personal dashboard, test history, scores, and progress tracking. No user must ever be able to access another user’s data under any circumstance.
+
+The system must include a strict admin system where only administrators have access to admin functionality. Admins may manage questions, users, road signs, diagrams, and system analytics, but cannot bypass validation rules or create content that violates official traffic regulations.
+
+The system must be built with a clear and explicit system architecture defining frontend as the user interface layer, backend as the logic and authority layer, database as persistent storage, and an offline synchronization layer handling local device storage and syncing. The backend must always be the single source of truth for scoring, timing, validation, and results, and the frontend must never perform final calculations or trust user-submitted scoring data.
+
+The system must define a structured API architecture requiring authentication for all endpoints, with admin routes protected by role-based access control and secure tokens that expire after inactivity. The system must also define standardized request and response structures for all endpoints.
+
+The system must enforce strict database constraints including unique identifiers for users, questions, and test attempts, relational integrity between all entities, foreign key enforcement, and prevention of duplicate or orphaned records. The system must also include indexing and query optimization for performance at scale.
+
+The system must support offline-first functionality with secure local encrypted storage and background synchronization. Server data must always be treated as the source of truth. Offline actions must be queued, synced safely, and processed in an idempotent way to prevent duplication. In case of conflicts, server data must override local data while safely merging valid progress. Tests must continue uninterrupted during offline mode and must automatically sync once connectivity is restored without restarting the test.
+
+The system must include a test session state machine with states including not started, in progress, paused for offline recovery, submitted, and expired. It must also include auto-save checkpoints during tests to prevent data loss.
+
+The system must include a server synchronized timer system where all timing is controlled centrally by the backend to prevent manipulation through device clocks or local time changes.
+
+The system must include strong security measures including encrypted passwords, secure authentication, protected APIs, rate limiting, account lockout after repeated failed login attempts, input validation, session expiry control, and protection against common cyber attacks. It must also include automatic backups, disaster recovery, and data redundancy.
+
+The system must enforce strict data integrity rules where no user can modify results, scores, or past test data, and no manipulation of timers or answers is possible. All submitted test results must be immutable and permanently stored in audit-safe logs.
+
+The system must include performance optimization strategies such as pagination for large datasets, caching for frequently accessed data, lazy loading of resources, and optimization for low-end devices to ensure smooth performance.
+
+The system must include full error handling that prevents crashes, handles disconnections, duplicate submissions, device shutdowns, and sync failures, and always displays user-friendly recovery messages instead of raw system errors.
+
+The system must include admin monitoring features such as system uptime tracking, performance monitoring, API response tracking, error logs, active user tracking, database health monitoring, and system performance alerts.
+
+The system must support versioning for both the system and question bank where updates do not affect historical results. Each test attempt must store the system version and question set version used at the time of completion, ensuring full backward consistency.
+
+The system must include a quality improvement loop that tracks frequently missed or low-performing questions and allows administrators to refine, improve, or remove weak content based on analytics.
+
+The system must include accessibility compliance aligned with WCAG AA standards including readable fonts, high contrast support, simple navigation, and optimization for low-end devices.
+
+The system must include full testing and quality assurance requirements including unit testing, integration testing, system testing, load testing, security testing, and structured bug reporting workflows.
+
+The system must define data retention policies including how long data is stored, user rights over their data, and a complete account deletion policy ensuring full user privacy compliance.
+
+The system must include deployment and infrastructure definitions specifying hosting environment options such as cloud, VPS, or serverless deployment, database type selection between SQL or NoSQL, secure file storage strategy for diagrams and media, and automated backup and disaster recovery setup.
+
+The system must include a versioned release strategy supporting structured updates such as v1, v1.1, and v2 while ensuring no data loss or corruption during upgrades.
+
+The system must include observability and system health monitoring including API logs, database monitoring, performance metrics, and failure alerting systems.
+
+The system must include a strict global override rule where if any feature conflicts with security, data integrity, fairness, or backend authority, those principles must always take priority over all other system behavior.
+
+The system must include a privacy policy and user agreement clearly defining data collection, storage, protection, user responsibilities, and acceptable system usage.
