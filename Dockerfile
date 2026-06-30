@@ -12,8 +12,8 @@ COPY . .
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Build the project (includes api-server and shared libs)
-RUN pnpm run build
+# Build the API server and its dependencies
+RUN pnpm --filter @workspace/api-server build
 
 # Set production environment variables
 ENV NODE_ENV=production
