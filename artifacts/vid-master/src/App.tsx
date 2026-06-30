@@ -7,12 +7,29 @@ import NotFound from "@/pages/not-found";
 import React from "react";
 
 // Mobile API Configuration
-// Automatically determine the backend URL based on the current hostname
-const apiIp = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'localhost'
-  : window.location.hostname;
+const isLocal = !window.location.hostname ||
+                window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                /^(\d{1,3}\.){3}\d{1,3}$/.test(window.location.hostname);
 
-setBaseUrl(`http://${apiIp}:8080`);
+// The URL of your Render backend
+const renderUrl = 'https://vid-dohn.onrender.com';
+const computerIp = '192.168.1.63';
+
+let apiUrl = (import.meta.env.VITE_API_URL as string);
+
+// Logic: Use Render URL by default, fallback to Local IP only if we are specifically on a local network/dev mode
+if (!apiUrl) {
+  if (isLocal && process.env.NODE_ENV === 'development') {
+    const host = (!window.location.hostname || window.location.hostname === 'localhost') ? computerIp : window.location.hostname;
+    apiUrl = `http://${host}:8080`;
+  } else {
+    apiUrl = renderUrl;
+  }
+}
+
+console.log(`[VID Master] API URL set to: ${apiUrl}`);
+setBaseUrl(apiUrl);
 
 import { AppLayout } from "@/components/layout/AppLayout";
 import Home from "@/pages/Home";

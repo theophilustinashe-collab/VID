@@ -1,0 +1,33 @@
+services:
+  # Backend API Server
+  - type: web
+    name: vid-master-api
+    runtime: docker
+    dockerFilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        sync: false # Set this in the Render dashboard manually
+      - key: SESSION_SECRET
+        generateValue: true
+    healthCheckPath: /api/health
+
+  # Frontend Web App (Static Site)
+  - type: static
+    name: vid-master-web
+    buildCommand: pnpm install && pnpm run build
+    publishDir: ./artifacts/vid-master/dist/public
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: vid-master-api
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

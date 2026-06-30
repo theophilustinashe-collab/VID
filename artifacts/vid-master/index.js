@@ -1,13 +1,24 @@
 import { registerRootComponent } from 'expo';
 import Constants from 'expo-constants';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, StatusBar, View, Text, Button } from 'react-native';
+import { StyleSheet, StatusBar, View, Text, Button, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 function App() {
   const [error, setError] = useState(null);
   const [key, setKey] = useState(0);
+
+  // If we are on web, show a message instead of crashing
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorTitle}>Native App Only</Text>
+        <Text style={styles.errorText}>The WebView shell is designed for Android/iOS.</Text>
+        <Text style={styles.hint}>Please open this project using the Expo Go app on your phone.</Text>
+      </View>
+    );
+  }
 
   // Default fallback to your known IP
   const hardcodedIp = '192.168.1.63';
@@ -18,7 +29,10 @@ function App() {
                  Constants.manifest?.debuggerHost?.split(':')[0];
 
   const ipToUse = (expoIp && expoIp !== 'localhost' && expoIp !== '127.0.0.1') ? expoIp : hardcodedIp;
-  const devServerUrl = `http://${ipToUse}:3000`;
+
+  // You can change this if your dev server runs on a different port
+  const devPort = 3001;
+  const devServerUrl = `http://${ipToUse}:${devPort}`;
 
   return (
     <SafeAreaProvider>

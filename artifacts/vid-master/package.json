@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "set PORT=3000&& set BASE_PATH=/&& vite --config vite.config.ts --host 0.0.0.0",
-    "build": "set PORT=3000&& set BASE_PATH=/&& vite build --config vite.config.ts",
-    "mobile:sync": "set PORT=3000 && set BASE_PATH=/ && pnpm build && cap sync",
+    "dev": "set PORT=3001&& set BASE_PATH=/&& vite --config vite.config.ts --host 0.0.0.0",
+    "build": "set PORT=3001&& set BASE_PATH=/&& vite build --config vite.config.ts",
+    "mobile:sync": "set PORT=3001 && set BASE_PATH=/ && pnpm build && cap sync",
     "mobile:open:android": "cap open android",
     "mobile:open:ios": "cap open ios",
     "expo:start": "set EXPO_PACKAGER_HOSTNAME=192.168.1.63&& expo start --lan",
@@ -17,7 +17,9 @@
     "expo:prebuild": "expo prebuild",
     "expo:dev-client": "expo start --dev-client",
     "serve": "set PORT=3000&& set BASE_PATH=/&& vite preview --config vite.config.ts --host 0.0.0.0",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.4.1",
@@ -96,6 +98,10 @@
     "expo-status-bar": "~3.0.9",
     "react-native": "0.81.5",
     "react-native-safe-area-context": "^5.8.0",
-    "react-native-webview": "13.15.0"
+    "react-native-web": "^0.19.13",
+    "react-native-webview": "13.15.0",
+    "react-dom": "catalog:",
+    "@expo/metro-runtime": "~4.0.1",
+    "react": "19.1.0"
   }
 }

@@ -359,8 +359,12 @@ export async function customFetch<T = unknown>(
   }
 
   const requestInfo = { method, url: resolveUrl(input) };
+  console.log(`[Fetch] ${method} ${requestInfo.url}`, init.body ? '(with body)' : '');
 
-  const response = await fetch(input, { ...init, method, headers });
+  const response = await fetch(input, { ...init, method, headers }).catch(err => {
+    console.error(`[Fetch Error] ${method} ${requestInfo.url}:`, err);
+    throw err;
+  });
 
   if (!response.ok) {
     const errorData = await parseErrorBody(response, method);

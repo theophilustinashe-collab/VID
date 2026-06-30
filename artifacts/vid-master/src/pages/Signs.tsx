@@ -21,7 +21,7 @@ export default function Signs() {
   const [category, setCategory] = useState("all");
   const [selectedSign, setSelectedSign] = useState<RoadSign | null>(null);
 
-  const { data: signs, isLoading } = useListSigns({
+  const { data: signs, isLoading, error } = useListSigns({
     search: search.length > 2 ? search : undefined,
     category: category !== "all" ? category : undefined,
   });
@@ -33,6 +33,70 @@ export default function Signs() {
     { value: "informative", label: "Informative" },
     { value: "direction", label: "Direction" },
   ];
+
+  let content;
+  if (isLoading) {
+    content = (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+          <Skeleton key={i} className="h-48 rounded-xl" />
+        ))}
+      </div>
+    );
+  } else if (error) {
+    content = (
+      <div className="text-center py-20 bg-destructive/5 border border-destructive/20 rounded-xl">
+        <Info className="w-12 h-12 text-destructive mx-auto mb-4" />
+        <h3 className="text-xl font-bold text-destructive">Error Loading Signs</h3>
+        <p className="text-muted-foreground mt-2">
+          {(error as any)?.message || "The server could not be reached."}
+        </p>
+        <Button variant="outline" className="mt-4" onClick={() => window.location.reload()}>
+          Retry
+        </Button>
+      </div>
+    );
+  } else if (!signs || signs.length === 0) {
+    content = (
+      <div className="text-center py-20 bg-card border rounded-xl">
+        <Info className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-xl font-bold">No signs found</h3>
+        <p className="text-muted-foreground">Try adjusting your search or category filter.</p>
+      </div>
+    );
+  } else {
+    content = (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {signs.map((sign) => (
+          <Card
+            key={sign.id}
+            className="cursor-pointer hover:border-primary transition-all hover:shadow-md group overflow-hidden"
+            onClick={() => setSelectedSign(sign)}
+          >
+            <CardContent className="p-4 flex flex-col items-center text-center h-full">
+              <div className="h-32 w-full flex items-center justify-center bg-muted/30 rounded-lg p-2 mb-4 group-hover:bg-muted/50 transition-colors">
+                {sign.imageUrl ? (
+                  <img
+                    src={sign.imageUrl}
+                    alt={sign.name}
+                    className="max-h-full max-w-full object-contain drop-shadow-sm"
+                  />
+                ) : (
+                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
+                    <span className="text-xs text-muted-foreground">No image</span>
+                  </div>
+                )}
+              </div>
+              <h3 className="font-semibold text-sm leading-tight line-clamp-2">{sign.name}</h3>
+              <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">
+                {sign.category}
+              </span>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
@@ -51,8 +115,8 @@ export default function Signs() {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Input 
-            placeholder="Search signs by name or meaning..." 
+          <Input
+            placeholder="Search signs by name or meaning..."
             className="pl-9"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -61,47 +125,15 @@ export default function Signs() {
         <Tabs value={category} onValueChange={setCategory} className="w-full md:w-auto overflow-x-auto">
           <TabsList>
             {categories.map((c) => (
-              <TabsTrigger key={c.value} value={c.value}>{c.label}</TabsTrigger>
+              <TabsTrigger key={c.value} value={c.value}>
+                {c.label}
+              </TabsTrigger>
             ))}
           </TabsList>
         </Tabs>
       </div>
 
-      {isLoading ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {[1,2,3,4,5,6,7,8,9,10].map(i => <Skeleton key={i} className="h-48 rounded-xl" />)}
-        </div>
-      ) : !signs || signs.length === 0 ? (
-        <div className="text-center py-20 bg-card border rounded-xl">
-          <Info className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-xl font-bold">No signs found</h3>
-          <p className="text-muted-foreground">Try adjusting your search or category filter.</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {signs.map((sign) => (
-            <Card 
-              key={sign.id} 
-              className="cursor-pointer hover:border-primary transition-all hover:shadow-md group overflow-hidden"
-              onClick={() => setSelectedSign(sign)}
-            >
-              <CardContent className="p-4 flex flex-col items-center text-center h-full">
-                <div className="h-32 w-full flex items-center justify-center bg-muted/30 rounded-lg p-2 mb-4 group-hover:bg-muted/50 transition-colors">
-                  {sign.imageUrl ? (
-                    <img src={sign.imageUrl} alt={sign.name} className="max-h-full max-w-full object-contain drop-shadow-sm" />
-                  ) : (
-                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-                      <span className="text-xs text-muted-foreground">No image</span>
-                    </div>
-                  )}
-                </div>
-                <h3 className="font-semibold text-sm leading-tight line-clamp-2">{sign.name}</h3>
-                <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{sign.category}</span>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
+      {content}
 
       <Dialog open={!!selectedSign} onOpenChange={(o) => !o && setSelectedSign(null)}>
         <DialogContent className="sm:max-w-md">
@@ -116,7 +148,11 @@ export default function Signs() {
               <div className="flex flex-col items-center py-6">
                 <div className="h-48 w-full flex items-center justify-center bg-muted/20 rounded-xl p-4 mb-6">
                   {selectedSign.imageUrl ? (
-                     <img src={selectedSign.imageUrl} alt={selectedSign.name} className="max-h-full max-w-full object-contain drop-shadow-md" />
+                    <img
+                      src={selectedSign.imageUrl}
+                      alt={selectedSign.name}
+                      className="max-h-full max-w-full object-contain drop-shadow-md"
+                    />
                   ) : (
                     <div className="w-24 h-24 bg-muted rounded-full" />
                   )}
@@ -128,7 +164,9 @@ export default function Signs() {
                   </div>
                   {selectedSign.usage && (
                     <div>
-                      <h4 className="font-semibold text-sm text-muted-foreground uppercase mb-1">Usage Context</h4>
+                      <h4 className="font-semibold text-sm text-muted-foreground uppercase mb-1">
+                        Usage Context
+                      </h4>
                       <p className="text-foreground text-sm">{selectedSign.usage}</p>
                     </div>
                   )}

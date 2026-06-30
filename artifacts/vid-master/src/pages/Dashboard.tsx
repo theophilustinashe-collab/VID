@@ -3,11 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { PlayCircle, Award, Target, Zap, Clock, CheckCircle2, XCircle } from "lucide-react";
+import { PlayCircle, Award, Target, Zap, Clock, CheckCircle2, XCircle, AlertCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 export default function Dashboard() {
-  const { data: dashboard, isLoading } = useGetDashboard();
+  const { data: dashboard, isLoading, error, refetch } = useGetDashboard();
 
   if (isLoading) {
     return (
@@ -22,7 +22,20 @@ export default function Dashboard() {
     );
   }
 
-  if (!dashboard) return null;
+  if (error || !dashboard) {
+    return (
+      <div className="p-8 flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+        <AlertCircle className="w-12 h-12 text-destructive" />
+        <h2 className="text-2xl font-bold text-destructive">Failed to load dashboard</h2>
+        <p className="text-muted-foreground text-center max-w-md">
+          {error instanceof Error ? error.message : "The connection to the server was refused. Please check if the backend is running."}
+        </p>
+        <Button onClick={() => refetch()} variant="outline" className="gap-2">
+          Try Again
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">

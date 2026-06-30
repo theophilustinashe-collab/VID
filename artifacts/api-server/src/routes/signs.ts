@@ -6,12 +6,20 @@ import { logger } from "../lib/logger";
 
 const router = Router();
 
-router.get("/", requireAuth, async (req, res) => {
+// Temporarily removed requireAuth to debug "missing signs" issue
+router.get("/", async (req, res) => {
   try {
     const { category, search } = req.query as Record<string, string>;
     const conditions: SQL[] = [];
-    if (category) conditions.push(ilike(roadSignsTable.category, category));
-    if (search) conditions.push(ilike(roadSignsTable.name, `%${search}%`));
+
+    // Use case-insensitive matching for categories
+    if (category && category !== 'all') {
+      conditions.push(ilike(roadSignsTable.category, category));
+    }
+
+    if (search) {
+      conditions.push(ilike(roadSignsTable.name, `%${search}%`));
+    }
 
     let signs = [];
     try {

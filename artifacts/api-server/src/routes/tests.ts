@@ -29,8 +29,10 @@ router.post("/start", requireAuth, async (req, res) => {
       const selectedHard = hard.slice(0, Math.min(5, hard.length));
 
       selected = shuffle([...selectedEasy, ...selectedMedium, ...selectedHard]);
+
       if (selected.length < TEST_QUESTIONS) {
-        const remaining = allQuestions.filter(q => !selected.includes(q));
+        const selectedIds = new Set(selected.map(q => q.id));
+        const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
         selected = [...selected, ...shuffle(remaining)].slice(0, TEST_QUESTIONS);
       } else {
         selected = selected.slice(0, TEST_QUESTIONS);

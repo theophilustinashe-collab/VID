@@ -43,6 +43,21 @@ Thumbs.db
 .env
 *.env
 .env.*
+*.log
+api.err
+api.out
+api_test.log
+dev_output.log
+final_dev.log
+startup.log
+backend_debug.log
+backend_err.log
+backend_error.log
+backend_stderr.log
+backend_stdout.log
+frontend_err.log
+frontend.log
+backend.log
 
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
