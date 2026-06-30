@@ -29,11 +29,7 @@ allprojects {
 
   // Shorten build paths on Windows to avoid "Filename too long" errors
   if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-      def isNodeModule = projectDir.absolutePath.contains("node_modules") || projectDir.absolutePath.contains(".pnpm")
-      if (isNodeModule) {
-          def newBuildDir = file("${rootProject.projectDir}/../.build/${project.name}")
-          project.buildDir = newBuildDir
-      }
+      // We keep build staging directory redirect as it is safe and helps with CMake deep paths
   }
 }
 

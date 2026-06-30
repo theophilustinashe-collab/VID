@@ -50,7 +50,7 @@ router.get("/dashboard", requireAuth, async (req, res) => {
     const { userId } = (req as typeof req & { user: { userId: number } }).user;
 
     let user;
-    let sessions = [];
+    let sessions: typeof testSessionsTable.$inferSelect[] = [];
 
     try {
       const [dbUser] = await db.select().from(usersTable).where(eq(usersTable.id, userId)).limit(1);
