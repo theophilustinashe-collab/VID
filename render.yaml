@@ -14,7 +14,7 @@ services:
         sync: false # Set this in the Render dashboard manually
       - key: SESSION_SECRET
         generateValue: true
-    healthCheckPath: /api/health
+    healthCheckPath: /api/healthz
 
   # Frontend Web App (Static Site)
   - type: static
