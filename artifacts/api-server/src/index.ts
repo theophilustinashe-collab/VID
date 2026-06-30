@@ -1,4 +1,7 @@
 console.log("[API] Starting server...");
+console.log("[API] Environment:", process.env.NODE_ENV);
+console.log("[API] Port:", process.env.PORT);
+
 import app from "./app";
 import { logger } from "./lib/logger";
 
