@@ -6,10 +6,18 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath('com.android.tools.build:gradle')
+    classpath('com.android.tools.build:gradle:8.5.0')
     classpath('com.facebook.react:react-native-gradle-plugin')
-    classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
+    classpath('org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.20')
   }
+}
+
+ext {
+    buildToolsVersion = "35.0.0"
+    minSdkVersion = 24
+    compileSdkVersion = 35
+    targetSdkVersion = 34
+    ndkVersion = "26.1.10909125"
 }
 
 allprojects {
@@ -18,7 +26,53 @@ allprojects {
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
   }
+
+  // Shorten build paths on Windows to avoid "Filename too long" errors
+  if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+      def isNodeModule = projectDir.absolutePath.contains("node_modules") || projectDir.absolutePath.contains(".pnpm")
+      if (isNodeModule) {
+          def newBuildDir = file("${rootProject.projectDir}/../.build/${project.name}")
+          project.buildDir = newBuildDir
+      }
+  }
 }
 
 apply plugin: "expo-root-project"
 apply plugin: "com.facebook.react.rootproject"
+
+// Shorten build paths on Windows to avoid "Filename too long" errors
+// This moves the .cxx folder for all subprojects (especially those in node_modules)
+// to a central location under the android/ folder.
+subprojects {
+    def configureNativeBuild = {
+        if (project.hasProperty('android')) {
+            project.android {
+                if (rootProject.ext.has("ndkVersion")) {
+                    ndkVersion rootProject.ext.ndkVersion
+                }
+                try {
+                    externalNativeBuild {
+                        cmake {
+                            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                                buildStagingDirectory = "${rootProject.projectDir}/.cxx/${project.name}"
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    // Ignore if externalNativeBuild is not available
+                }
+            }
+        }
+    }
+    try {
+        if (project.state.executed) {
+            configureNativeBuild()
+        } else {
+            project.afterEvaluate {
+                configureNativeBuild()
+            }
+        }
+    } catch (Exception e) {
+        configureNativeBuild()
+    }
+}

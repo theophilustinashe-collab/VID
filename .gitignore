@@ -65,3 +65,9 @@ backend.log
 # Replit
 .cache/
 .local/
+
+# Build artifacts
+.build/
+.cxx/
+android/.cxx/
+**/build/
