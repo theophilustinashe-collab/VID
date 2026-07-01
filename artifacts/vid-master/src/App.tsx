@@ -14,14 +14,22 @@ const isLocal = !window.location.hostname ||
 
 // The URL of your Render backend
 const renderUrl = 'https://vid-dohn.onrender.com';
-const computerIp = '192.168.1.63';
 
 let apiUrl = (import.meta.env.VITE_API_URL as string);
 
-// Logic: Use Render URL by default, fallback to Local IP only if we are specifically on a local network/dev mode
+// Logic:
+// 1. If VITE_API_URL is set (e.g. by Render), use it.
+// 2. If we are on localhost/local IP:
+//    - If in DEV mode, use the local backend (8080).
+//    - If in PROD mode (built locally), still try local backend first, fallback to Render.
+// 3. Otherwise, use Render.
 if (!apiUrl) {
-  if (isLocal && import.meta.env.DEV) {
-    const host = (!window.location.hostname || window.location.hostname === 'localhost') ? computerIp : window.location.hostname;
+  if (isLocal) {
+    // Check if we should use the local machine IP or just localhost
+    const host = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'localhost'
+      : window.location.hostname;
+
     apiUrl = `http://${host}:8080`;
   } else {
     apiUrl = renderUrl;

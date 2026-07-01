@@ -22,5 +22,5 @@ ENV PORT=8080
 # Expose the port
 EXPOSE 8080
 
-# Start the API server
-CMD ["pnpm", "--filter", "@workspace/api-server", "run", "start"]
+# Start the API server directly with node for efficiency
+CMD ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
